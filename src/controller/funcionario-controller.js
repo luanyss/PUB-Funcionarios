@@ -1,4 +1,4 @@
-const Funcionarios= require("../models/FuncionariosModel");
+const Funcionario= require("../models/FuncionariosModel");
 const FuncionariosDAO = require("../DAO/FuncionariosDAO");
 module.exports = (app, db) => {
   let funcionariosBanco = new FuncionariosDAO(db);
@@ -29,58 +29,58 @@ module.exports = (app, db) => {
     }
   });
 
-  /*app.post("/users", async (req, res) => {
-    const { nome, email, senha } = req.body;
-    let newUser = new User(nome, email, senha);
+  app.post("/funcionarios", async (req, res) => {
+    const { nome, email, cargo, salario } = req.body;
+    let newFuncionario = new Funcionario(nome, email, cargo, salario);
     try {
-      await userBanco.insertUser(newUser);
+      await funcionariosBanco.insertFuncionarios(newFuncionario);
       res.status(201).json({
-        message: "Usuário inserido com sucesso",
+        message: "Funcionario inserido com sucesso",
         error: false,
       });
     } catch (err) {
       res.status(500).json({
-        message: "Erro ao inserir usuario",
+        message: "Erro ao inserir funcionario",
         serverLog: err.message,
         error: true,
       });
     }
   });
 
-  app.delete("/users/:id", async (req, res) => {
+  app.delete("/funcionarios/:id", async (req, res) => {
     const { id } = req.params;
     try {
-      await userBanco.deleteUser(id);
+      await funcionariosBanco.deleteFuncionarios(id);
       res.status(200).json({
-        message: "Usuário deletado com sucesso",
+        message: "Funcionario deletado com sucesso",
         error: false,
       });
     } catch (err) {
       res.status(500).json({
-        message: "Erro ao deletar usuario",
+        message: "Erro ao deletar funcionario",
         serverLog: err.message,
         error: true,
       });
     }
   });
 
-  app.put("/users/:id", async (req, res) => {
-    const { nome, email, senha } = req.body;
+  app.put("/funcionarios/:id", async (req, res) => {
+    const { nome, email, cargo, salario } = req.body;
 
     const { id } = req.params;
 
     try {
-      await userBanco.updateUser(id, nome, email, senha);
+      await funcionariosBanco.updateFuncionarios(id, nome, email, cargo, salario);
       res.status(200).json({
-        message: "Usuário atualizado com sucesso",
+        message: "Funcionario atualizado com sucesso",
         error: false,
       });
     } catch (err) {
       res.status(500).json({
-        message: "Erro ao atualizar o  usuário",
+        message: "Erro ao atualizar o  funcionario",
         serverLog: err.message,
         error: true,
       });
     }
-  });  */
+  }); 
 };
