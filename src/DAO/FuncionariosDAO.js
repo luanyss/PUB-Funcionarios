@@ -14,6 +14,7 @@ class FuncionariosDAO {
       });
     });
   }
+  
 
   getFuncionarios(id) {
     return new Promise((resolve, reject) => {
